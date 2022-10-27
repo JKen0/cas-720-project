@@ -1,0 +1,21 @@
+services:
+  postgres_chainlink:
+    image: "postgres"
+    ports: 
+      - "5432:5432"
+    env_file:
+      - database.env
+    volumes: 
+      - C:/Dev/cas-720-project/chainlink-local-node/data:/var/lib/postgressql/data/
+  
+  chainlink:
+    image: "smartcontract/chainlink:1.3.0"
+    env_file:
+      - .env
+    depends_on:
+      - postgres_chainlink
+    ports:
+      - "6688:6688"
+    volumes:
+      - C:/Dev/cas-720-project/chainlink-local-node/chainlink-volume:/chainlink/
+    command: node start --password /chainlink/password.txt --api /chainlink/apicredentials.txt
