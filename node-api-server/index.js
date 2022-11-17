@@ -34,12 +34,6 @@ app.get('/weather/fetchRainFallData', async (req, res) => {
             totalRain += val;
         };
 
-        console.log({
-            startDate,
-            endDate,
-            extractSumRainArray
-        })
-
         // return the result of the total rainfall to the requested user. 
         res.status(StatusCodes.OK).send({ sumRainfall: totalRain });
 
