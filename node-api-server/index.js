@@ -1,11 +1,14 @@
 const express = require('express');
 const moment = require('moment');
 const axios = require('axios');
+const cors = require('cors');
 const app = express();
 const { StatusCodes } = require('http-status-codes');
 const port = 3001;
+const host = '127.0.0.1';
 
 
+app.use(cors());
 
 
 app.get('/test', async (req, res) => {
@@ -43,7 +46,16 @@ app.get('/weather/fetchRainFallData', async (req, res) => {
 });
 
 
-app.listen(port, () => {
+app.listen(port, host, () => {
     
     console.log(`Node application running on port: ${port}!`)
 });
+
+
+
+/*
+    1. Creating a chainlink request on the smart contract
+    2. chainlin recieves and fulfills ()
+
+
+*/
