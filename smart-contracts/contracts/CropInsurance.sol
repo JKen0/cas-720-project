@@ -65,6 +65,24 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
         uint256 _maxRain,
         uint256 _insuredAmount
     ) public onlyOwner {
+        
+        // calculate the liability of this contract insurance
+        // this includes all pending policies + the new policy we want to make
+        uint256 requiredContractBalance = 0;
+        for (uint i=0; i < arrayPolicyID.length; i++) {
+            string memory policyId = arrayPolicyID[i]; 
+            Policy memory policyData = policies[policyId];
+
+            if(policyData.status == PolicyStatus.PENDING) {
+                requiredContractBalance = requiredContractBalance + policyData.insuredAmount;
+            }
+
+        }
+        requiredContractBalance = requiredContractBalance + _insuredAmount;
+
+        // the contract must have enough funds to pay out the new contract when crerating a contract. 
+        require(address(this).balance >= requiredContractBalance);
+
         // create the new policy using the parameters that the user provided:
         Policy memory _newPolicy = Policy(
             _policyId,
@@ -219,11 +237,12 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
         bytes32 _requestId, 
         uint256 _totalRainFall 
     ) public recordChainlinkFulfillment(_requestId) {
-        emit RequestTotalRainFall(_requestId, _totalRainFall);
-        
+        emit RequestTotalRainFall(_requestId, _totalRainFall);       
         string memory policyId = requests[_requestId];
-
         policies[policyId].rainData.rainAmount = _totalRainFall;
+
+        // when rain amount state is updated, check if a decision needs to be made. 
+        refreshPolicyDecision(policyId);
     }
 
     /*
@@ -246,7 +265,7 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
     /*
         @DEV: REFRESH RAINFALL DATA FOR EACH POLICY
     */
-    function refreshPolicyRainfall (
+    function refreshAllPolicyRainfall (
         address _oracle,
         string memory _jobId  
     ) public onlyOwner {
@@ -266,31 +285,29 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
     /*
         @DEV: CHECK ALL POLICY TO SEE IF DECISION IS MADE (MAKE SURE TO UPDATE RAINFALL DATA FIRST)
     */
-    function refreshAllPolicyDecisions () public onlyOwner {
-        // loop through all contract policies under this insurance policy
-        for (uint i=0; i < arrayPolicyID.length; i++) {
-            string memory policyId = arrayPolicyID[i]; 
-            Policy memory policyData = policies[policyId];  
+    function refreshPolicyDecision (
+        string memory policyId
+    ) private {
+        Policy memory policyData = policies[policyId];  
 
-            // if contract is pending, make updates
-            if(policyData.status == PolicyStatus.PENDING) {
-            
-                // if contract expired and rain in between min max, close contract and mark to NOT pay.
-                if(
-                    block.timestamp > policies[policyId].rainData.endDateUnix && 
-                    (policies[policyId].rainData.rainAmount >= policies[policyId].minRain && policies[policyId].rainData.rainAmount <= policies[policyId].maxRain)
-                ) {
-                    markPolicyDoNotPay(policyId);
-                }
-                // if contract expires and rain less thn minimum, pay out
-                // if contract is over the maximum amount of rain, pay out
-                else if (
-                     (block.timestamp > policies[policyId].rainData.endDateUnix && policies[policyId].rainData.rainAmount < policies[policyId].minRain) ||
-                     policies[policyId].rainData.rainAmount > policies[policyId].maxRain
-                ) {
-                    markPolicyPay(policyId);
-                }   
-            }  
+        // if contract is pending, make updates
+        if(policyData.status == PolicyStatus.PENDING) {
+        
+            // if contract expired and rain in between min max, close contract and mark to NOT pay.
+            if(
+                block.timestamp > policies[policyId].rainData.endDateUnix && 
+                (policies[policyId].rainData.rainAmount >= policies[policyId].minRain && policies[policyId].rainData.rainAmount <= policies[policyId].maxRain)
+            ) {
+                markPolicyDoNotPay(policyId);
+            }
+            // if contract expires and rain less thn minimum, pay out
+            // if contract is over the maximum amount of rain, pay out
+            else if (
+                    (block.timestamp > policies[policyId].rainData.endDateUnix && policies[policyId].rainData.rainAmount < policies[policyId].minRain) ||
+                    policies[policyId].rainData.rainAmount > policies[policyId].maxRain
+            ) {
+                markPolicyPay(policyId);
+            }   
         }
     }
 

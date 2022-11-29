@@ -114,7 +114,7 @@ contract CropInsurance2 is ChainlinkClient, ConfirmedOwner {
     /*
         @DEV: CHECK ALL POLICY TO SEE IF DECISION IS MADE (MAKE SURE TO UPDATE RAINFALL DATA FIRST)
     */
-    function refreshPolicyDecisions() public onlyOwner {
+    function refreshPolicyDecision() public onlyOwner {
         // if contract is pending, make updates
         if(contractStatus == ALLSTATUS.PENDING) {
             
@@ -136,6 +136,9 @@ contract CropInsurance2 is ChainlinkClient, ConfirmedOwner {
     function fulFillTotalRainFall( bytes32 _requestId, uint256 _totalRainFall ) public recordChainlinkFulfillment(_requestId) {
         emit RequestTotalRainFall(_requestId, _totalRainFall);
         rainAmount = _totalRainFall;
+
+        // when rain amount state is updated, check if a decision needs to be made. 
+        refreshPolicyDecision();
     }
 
     /*
