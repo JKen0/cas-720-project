@@ -1,0 +1,13 @@
+[
+    {
+        "policyID": "TEST-POLICY-HAMILTON",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1661994625,
+        "endDateUnix": 1664586625,
+        "lat": "51.0447",
+        "lng": "114.0719",
+        "minRain": 1000,
+        "maxRain": 3000,
+        "insuredAmount": 20000
+    }
+]

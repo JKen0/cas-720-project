@@ -2,13 +2,16 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
 import moment from 'moment';
-const TestPolicies = require('../testPolicies.json');
+const TestPolicies = require('../testData/testPolicies.json');
 
 
 const DetailComponent = (props) => {
     const dataItem = props.dataItem;
     return (
       <section>
+        <p>
+          <strong>Insured Address:</strong> {dataItem.owner} 
+        </p>
         <p>
           <strong>Policy ID:</strong> {dataItem.policyID}
         </p>
@@ -58,19 +61,32 @@ const ViewPolicies = () => {
         setData(newData);
     };
 
+    const dateCell = (props) => {
+        const field = props.field || "";
+        return (
+            <td>
+                {moment.unix(props.dataItem[field]).format("YYYY-MM-DD")}
+            </td>
+        ) 
+    };
+
     return (
         <div>
-        <Grid data={data}
-          detail={DetailComponent}
-          expandField="expanded"
-          onExpandChange={expandChange}
-        >
-          <Column field="policyID" title="Policy ID" />
-          <Column field="policyStatus" title="Policy Status" />
-          <Column field="startDateUnix" title="Start Insurance Date" />
-          <Column field="endDateUnix" title="End Insurance Date" />
-          <Column field="insuredAmount" title="Insured Amount" />
-        </Grid>
+          <header style={{ padding: 10, fontSize: 25, fontWeight: "bold", }}>
+            View All Policies:
+          </header>
+          <Grid data={data}
+            detail={DetailComponent}
+            expandField="expanded"
+            onExpandChange={expandChange}
+            style={{ padding: 10 }}
+          >
+            <Column field="policyID" title="Policy ID"/>
+            <Column field="policyStatus" title="Policy Status"/>
+            <Column field="startDateUnix" title="Start Insurance Date" cell={dateCell}/>
+            <Column field="endDateUnix" title="End Insurance Date" cell={dateCell}/>
+            <Column field="insuredAmount" title="Insured Amount" />
+          </Grid>
       </div>
     );
 };

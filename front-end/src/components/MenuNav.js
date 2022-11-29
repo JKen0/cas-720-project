@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import CreatePolicy from './CreatePolicy';
 import ViewPolicy from './ViewPolicy';
 import ViewPolicies from './ViewPolicies';
+import ViewRequests from './ViewRequests';
 
 const kendokaAvatar = "https://www.telerik.com/kendo-react-ui-develop/components/images/kendoka-react.png";
 
@@ -19,6 +20,8 @@ const MenuNavContainer = (props) => {
         return <ViewPolicy />;
       case "viewallpolicies":
         return <ViewPolicies />;
+      case "viewallrequests":
+        return <ViewRequests />;
       default:
         return <CreatePolicy />;
 

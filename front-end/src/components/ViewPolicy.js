@@ -6,9 +6,6 @@ function ViewPolicy() {
             <header className="App-header">
                 THIS IS COMPONENT VIEW POLICY
             </header>
-            <p>
-                THIS IS COMPONENT VIEW POLICY           
-            </p>
         </div>
     );
 }
