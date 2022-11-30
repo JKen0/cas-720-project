@@ -2,8 +2,10 @@ import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "@progress/kendo-theme-default";
 import CreatePolicy from './components/CreatePolicy';
-import ViewPolicy from './components/ViewPolicy';
+import MyPolicies from './components/MyPolicies';
 import MenuNavContainer from './components/MenuNav';
+import ViewPolicies from "./components/ViewPolicies";
+import ViewRequests from "./components/ViewRequests";
 
 
 const App = () => {
@@ -27,9 +29,9 @@ const App = () => {
         <Route path="/" element={<MenuNavContainer />}>
           <Route index element={<CreatePolicy />} />
           <Route path="/createpolicy" element={<CreatePolicy />} />
-          <Route path="/viewpolicy" element={<ViewPolicy />} />
-          <Route path="/viewallpolicies" element={<CreatePolicy />} />
-          <Route path="/viewallrequests" element={<ViewPolicy />} />
+          <Route path="/mypolicies" element={<MyPolicies />} />
+          <Route path="/viewallpolicies" element={<ViewPolicies />} />
+          <Route path="/viewallrequests" element={<ViewRequests />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>

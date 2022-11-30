@@ -1,0 +1,28 @@
+[
+    {
+        "policyID": "TEST-POLICY-HAMILTON",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1661994625,
+        "endDateUnix": 1664586625,
+        "lat": "43.2557",
+        "lng": "79.8711",
+        "minRain": 111,
+        "maxRain": 3456,
+        "insuredAmount": 20000,
+        "policyStatus": "PAID",
+        "currentRain": 3500 
+    },
+    {
+        "policyID": "TEST-POLICY-HAMILTON-2",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1661994625,
+        "endDateUnix": 1664586625,
+        "lat": "43.2557",
+        "lng": "79.8711",
+        "minRain": 5000,
+        "maxRain": 7000,
+        "insuredAmount": 2000,
+        "policyStatus": "DO_NOT_PAY",
+        "currentRain": 3500 
+    }
+]

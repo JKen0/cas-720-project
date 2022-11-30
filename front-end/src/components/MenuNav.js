@@ -3,7 +3,7 @@ import { AppBar, AppBarSection, AppBarSpacer, Avatar, } from "@progress/kendo-re
 import { Badge, BadgeContainer } from "@progress/kendo-react-indicators";
 import { Link } from "react-router-dom";
 import CreatePolicy from './CreatePolicy';
-import ViewPolicy from './ViewPolicy';
+import MyPolicies from './MyPolicies';
 import ViewPolicies from './ViewPolicies';
 import ViewRequests from './ViewRequests';
 
@@ -16,8 +16,8 @@ const MenuNavContainer = (props) => {
     switch(currentView) {
       case "createpolicy":
         return <CreatePolicy />;
-      case "viewpolicy":
-        return <ViewPolicy />;
+      case "mypolicies":
+        return <MyPolicies />;
       case "viewallpolicies":
         return <ViewPolicies />;
       case "viewallrequests":
@@ -61,7 +61,7 @@ const MenuNavContainer = (props) => {
               <Link to="/createpolicy" onClick={() => setView("createpolicy")} >Create Policy</Link>
             </li>
             <li>
-              <Link to="/viewpolicy" onClick={() => setView("viewpolicy")} >View Policy</Link>
+              <Link to="/mypolicies" onClick={() => setView("mypolicies")}>My Policies</Link>
             </li>
             <li>
               <Link to="/viewallpolicies" onClick={() => setView("viewallpolicies")}>View All Policies</Link>
