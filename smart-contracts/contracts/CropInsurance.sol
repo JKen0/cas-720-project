@@ -65,7 +65,7 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
         uint256 _maxRain,
         uint256 _insuredAmount
     ) public onlyOwner {
-        
+
         // calculate the liability of this contract insurance
         // this includes all pending policies + the new policy we want to make
         uint256 requiredContractBalance = 0;
@@ -79,7 +79,7 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
 
         }
         requiredContractBalance = requiredContractBalance + _insuredAmount;
-
+        
         // the contract must have enough funds to pay out the new contract when crerating a contract. 
         require(address(this).balance >= requiredContractBalance);
 
@@ -128,16 +128,6 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
             return _dummyPolicy;
         }  
 
-    }
-
-    /*
-        @DEV: MANUALLY UPDATE RAIN AMOUNT DATA (FOR TESTING PURPOSES ONLY)
-    */
-    function updateRainAmountManually (
-        string memory _policyId,
-        uint256 _rainAmount
-    ) public onlyOwner {
-        policies[_policyId].rainData.rainAmount = _rainAmount;
     }
 
     /*
@@ -201,7 +191,7 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
         string memory _policyId,
         address _oracle,
         string memory _jobId        
-    ) public onlyOwner {
+    ) public {
         
         // create chainlink request
         Chainlink.Request memory req = buildChainlinkRequest( 
@@ -268,7 +258,7 @@ contract CropInsurance is ChainlinkClient, ConfirmedOwner {
     function refreshAllPolicyRainfall (
         address _oracle,
         string memory _jobId  
-    ) public onlyOwner {
+    ) public {
         // loop through all contract policies under this insurance contract
         for (uint i=0; i < arrayPolicyID.length; i++) {
             string memory policyId = arrayPolicyID[i]; 

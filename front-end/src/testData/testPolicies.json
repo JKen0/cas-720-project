@@ -10,7 +10,7 @@
         "maxRain": 3000,
         "insuredAmount": 20000,
         "policyStatus": "PAID",
-        "currentRain": 3500 
+        "currentRain": 4490 
     },
     {
         "policyID": "TEST-POLICY-AMSTERDAM",
@@ -23,7 +23,7 @@
         "maxRain": 3000,
         "insuredAmount": 20000,
         "policyStatus": "PAID",
-        "currentRain": 3500 
+        "currentRain": 5910 
     },
     {
         "policyID": "TEST-POLICY-LONDON",
@@ -35,8 +35,8 @@
         "minRain": 1000,
         "maxRain": 3000,
         "insuredAmount": 20000,
-        "policyStatus": "NOT_PAID" ,
-        "currentRain": 3500 
+        "policyStatus": "DO_NOT_PAY" ,
+        "currentRain": 2230 
     },
     {
         "policyID": "TEST-POLICY-LONDON-2",
@@ -48,7 +48,72 @@
         "minRain": 1000,
         "maxRain": 3000,
         "insuredAmount": 20000,
+        "policyStatus": "PAID",
+        "currentRain": 4760 
+    },
+    {
+        "policyID": "TEST-POLICY-LONDON-4",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1669334400,
+        "endDateUnix": 1671062400,
+        "lat": "51.5072",
+        "lng": "0.1276",
+        "minRain": 1000,
+        "maxRain": 3000,
+        "insuredAmount": 20000,
         "policyStatus": "PENDING" ,
-        "currentRain": 3500 
+        "currentRain": 0 
+    },
+    {
+        "policyID": "TEST-POLICY-LONDON-5",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1671062400,
+        "endDateUnix": 1671926400,
+        "lat": "51.5072",
+        "lng": "0.1276",
+        "minRain": 1000,
+        "maxRain": 3000,
+        "insuredAmount": 20000,
+        "policyStatus": "PENDING" ,
+        "currentRain": 0 
+    },
+    {
+        "policyID": "TEST-POLICY-HAMILTON",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1669334400,
+        "endDateUnix": 1671062400,
+        "lat": "43.2000",
+        "lng": "-79.8400",
+        "minRain": 1000,
+        "maxRain": 3000,
+        "insuredAmount": 20000,
+        "policyStatus": "PENDING" ,
+        "currentRain": 0 
+    },
+    {
+        "policyID": "TEST-POLICY-HAMILTON-2",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1670112000,
+        "endDateUnix": 1671062400,
+        "lat": "43.2000",
+        "lng": "-79.8400",
+        "minRain": 1000,
+        "maxRain": 3000,
+        "insuredAmount": 20000,
+        "policyStatus": "PENDING" ,
+        "currentRain": 0 
+    },
+    {
+        "policyID": "TEST-POLICY-AMSTERDAM-2",
+        "owner": "0xa24CB61ea8Ad99D754abc5aAF2228e495d72cC6f",
+        "startDateUnix": 1669863600,
+        "endDateUnix": 1670641200,
+        "lat": "52.3676",
+        "lng": "4.9041",
+        "minRain": 1000,
+        "maxRain": 3000,
+        "insuredAmount": 20000,
+        "policyStatus": "PENDING",
+        "currentRain": 0 
     }
 ]

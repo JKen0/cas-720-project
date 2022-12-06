@@ -114,7 +114,7 @@ contract CropInsurance2 is ChainlinkClient, ConfirmedOwner {
     /*
         @DEV: CHECK ALL POLICY TO SEE IF DECISION IS MADE (MAKE SURE TO UPDATE RAINFALL DATA FIRST)
     */
-    function refreshPolicyDecision() public onlyOwner {
+    function refreshPolicyDecision() public {
         // if contract is pending, make updates
         if(contractStatus == ALLSTATUS.PENDING) {
             
