@@ -62,7 +62,7 @@
         "maxRain": 3000,
         "insuredAmount": 20000,
         "policyStatus": "PENDING" ,
-        "currentRain": 0 
+        "currentRain": 1390 
     },
     {
         "policyID": "TEST-POLICY-LONDON-5",
@@ -88,7 +88,7 @@
         "maxRain": 3000,
         "insuredAmount": 20000,
         "policyStatus": "PENDING" ,
-        "currentRain": 0 
+        "currentRain": 2080
     },
     {
         "policyID": "TEST-POLICY-HAMILTON-2",
@@ -101,7 +101,7 @@
         "maxRain": 3000,
         "insuredAmount": 20000,
         "policyStatus": "PENDING" ,
-        "currentRain": 0 
+        "currentRain": 930
     },
     {
         "policyID": "TEST-POLICY-AMSTERDAM-2",
@@ -113,7 +113,7 @@
         "minRain": 1000,
         "maxRain": 3000,
         "insuredAmount": 20000,
-        "policyStatus": "PENDING",
-        "currentRain": 0 
+        "policyStatus": "PAID",
+        "currentRain": 460
     }
 ]
